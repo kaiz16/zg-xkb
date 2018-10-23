@@ -2574,15 +2574,19 @@
           <iso639Id>mya</iso639Id>
         </languageList>
       </configItem>
-      <variantList>
-        <variant>
-          <configItem>
-            <name>zawgyi</name>
-        	<shortDescription>zg</shortDescription>
-            <description>Burmese Zawgyi</description>
-          </configItem>
-        </variant>
-      </variantList>
+      <variantList/>
+    </layout>
+     <layout>
+      <configItem>
+        <name>zg</name>
+        
+        <shortDescription>my</shortDescription>
+        <description>Burmese Zawgyi</description>
+        <languageList>
+          <iso639Id>mya</iso639Id>
+        </languageList>
+      </configItem>
+      <variantList/>
     </layout>
     <layout>
       <configItem>
