@@ -56,7 +56,7 @@ xkb_symbols "zawgyi" {
 
 	key <BKSL> { [ U104F, U1092 ] };
 	// End alphanumeric section
-	include "mm(tilde_switch)"
+	include "zg(tilde_switch)"
 };
 
 // The following code creates the "Tilde key" phenomenon.
