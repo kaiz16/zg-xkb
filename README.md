@@ -41,5 +41,24 @@ $ make zawgyi (Your system fallback font will change to Zawgyi-One)
 $ cd zg-xkb
 $ sudo make uninstall 
 ```
+### Notes on fonts.conf
 
+Below fontconfig work in system but doesn't work in any internet browsers. Internet browsers display in Zawgyi even if Unicode is chosen.
+Seems like fontconfig is not recognized by the Internet Browsers.
+Zawgyi overides the Padauk font because it has more encoding points.
+For example,
+- Set Zawgyi-One -> Internet browsers display in Zawgyi-One.
+- Set Noto Sans Myanmar or Myanmar3 or Padauk -> Internet browsers still -display in Zawgyi-One.
+- Remove Zawgyi -> Internet browsers display in Padauk.
+- Set Noto Sans Myanmar or Myanmar3 after removing Zawgyi -> Internet browsers display in Padauk.
+
+```
+<match target="pattern">
+	<test compare="eq" name="lang" qual="any"><string>my</string></test>
+	<edit mode="assign" name="family">
+		<string>Noto Sans Myanmar</string>
+	</edit>
+</match>
+```
+A dirty way to fix this problem without removing fonts is to blacklist all fonts in Burmese language but whitelist only one font. See new configurations in fonts.conf.
 
