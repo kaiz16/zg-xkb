@@ -1,2 +1,2 @@
 #!/bin/bash
-sed -i "s/Myanmar3/Zawgyi-One/g" ~/.config/fontconfig/fonts.conf
+sed -i "s/Myanmar3/Myanmar Text/g" ~/.config/fontconfig/fonts.conf

@@ -24,12 +24,12 @@ uninstall:
 	test -f /usr/share/X11/xkb/rules/evdev.xml.orig && echo "Found evdev.xml.orig! Restoring..." && rm -rf /usr/share/X11/xkb/rules/evdev.xml && mv /usr/share/X11/xkb/rules/evdev.xml.orig /usr/share/X11/xkb/rules/evdev.xml || echo "evdev.xml.orig not found! Skipped restoration of evdev.xml.orig"
 	echo "Done!"
 zawgyi:
-	echo "Setting system fallback font to Zawgyi-One"
-	sed -i "s/Myanmar3/Zawgyi-One/g" ~/.config/fontconfig/fonts.conf
+	echo "Setting system fallback font to Zawgyi"
+	sed -i "s/Myanmar3/Myanmar Text/g" ~/.config/fontconfig/fonts.conf
 	echo "Done!"
 unicode:
 	echo "Setting system fallback font to Myanmar3"
-	sed -i "s/Zawgyi-One/Myanmar3/g" ~/.config/fontconfig/fonts.conf
+	sed -i "s/Zawgyi-One/Myanmar Text/g" ~/.config/fontconfig/fonts.conf
 	echo "Done!"
 
 .PHONY: install uninstall perm zawgyi unicode
