@@ -64,7 +64,7 @@ xkb_symbols "zawgyi" {
 partial modifier_keys
 xkb_symbols "tilde_switch" {
 	key <TLDE> {
-	symbols[Group1] = [ ISO_Level3_Latch,	asciitilde,	grave ]
+	symbols[Group1] = [ ISO_Level3_Latch,	ISO_Level3_Shift,	grave ]
 	};
 	modifier_map Mod5	{ ISO_Level3_Latch };
 };
