@@ -22,6 +22,11 @@ uninstall:
 	echo "Removing fonts.conf"
 	rm -rf ~/.config/fontconfig
 	test -f /usr/share/X11/xkb/rules/evdev.xml.orig && echo "Found evdev.xml.orig! Restoring..." && rm -rf /usr/share/X11/xkb/rules/evdev.xml && mv /usr/share/X11/xkb/rules/evdev.xml.orig /usr/share/X11/xkb/rules/evdev.xml || echo "evdev.xml.orig not found! Skipped restoration of evdev.xml.orig"
+	#remove sh files if exists
+	[ -f ~/bin/zawgyi -o -f ~/bin/unicode ] && echo "Removing sh files" && \
+	for sh in ~/bin/zawgyi ~/bin/unicode ; do \
+		rm -f $$sh ; \
+	done || echo "sh files not found so not removed"
 	echo "Done!"
 zawgyi:
 	echo "Setting system fallback font to Zawgyi"
@@ -31,6 +36,5 @@ unicode:
 	echo "Setting system fallback font to Myanmar3"
 	sed -i "s/Zawgyi-One/Myanmar Text/g" ~/.config/fontconfig/fonts.conf
 	echo "Done!"
-
-.PHONY: install uninstall perm zawgyi unicode
+.PHONY: install uninstall perm zawgyi unicode 
 .SILENT: uninstall install perm zawgyi unicode
