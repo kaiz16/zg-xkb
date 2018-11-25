@@ -11,7 +11,6 @@ $ git clone https://github.com/kaiz16/zg-xkb.git
 $ sudo apt install make
 $ cd zg-xkb
 $ sudo make install
-$ make perm (Do not add sudo because the $USER variable is translated to root if the sudo command on)
 ```
 - Then log out or restart your device. By going into input sources or text entry you will see two keyboards. You can simply choose which one to add depending on your System Fallback font. 
 - Burmese (Default Unicode keyboard) 

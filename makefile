@@ -8,11 +8,9 @@ install:
 	cp ./zg /usr/share/X11/xkb/symbols
 	echo "Adding fonts.conf"
 	mkdir -p ~/.config/fontconfig && cp ./fonts.conf ~/.config/fontconfig
-	echo "Done!"
-perm: 
-	echo "Your username is "$$USER
+	echo "Your username is "$$SUDO_USER
 	sudo chmod 700 ~/.config/fontconfig 
-	sudo chown -R $$USER ~/.config/fontconfig
+	sudo chown -R $$SUDO_USER ~/.config/fontconfig
 	echo "Done!"
 uninstall:
 	echo "Removing fonts"
@@ -36,5 +34,5 @@ unicode:
 	echo "Setting system fallback font to Myanmar3"
 	sed -i "s/Zawgyi-One/Myanmar Text/g" ~/.config/fontconfig/fonts.conf
 	echo "Done!"
-.PHONY: install uninstall perm zawgyi unicode 
-.SILENT: uninstall install perm zawgyi unicode
+.PHONY: install uninstall zawgyi unicode 
+.SILENT: uninstall install zawgyi unicode
