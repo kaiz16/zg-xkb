@@ -1,23 +1,21 @@
 
 install:
-	echo "Installing fonts"
-	mkdir -p /usr/share/fonts/mm && cp ./mm/*.ttf /usr/share/fonts/mm
-	echo "Installing keyboard"
-	mv /usr/share/X11/xkb/rules/evdev.xml /usr/share/X11/xkb/rules/evdev.xml.orig 
-	cp ./evdev.xml /usr/share/X11/xkb/rules
-	cp ./zg /usr/share/X11/xkb/symbols
-	echo "Adding fonts.conf"
-	mkdir -p ~/.config/fontconfig && cp ./fonts.conf ~/.config/fontconfig
-	echo "Your username is "$$SUDO_USER
-	sudo chmod 700 ~/.config/fontconfig 
-	sudo chown -R $$SUDO_USER ~/.config/fontconfig
+	echo "Installing"
+	mkdir -p /usr/share/fonts/mm && cp ./mm/*.ttf /usr/share/fonts/mm #add fonts
+	mv /usr/share/X11/xkb/rules/evdev.xml /usr/share/X11/xkb/rules/evdev.xml.orig #backup stock rules
+	cp ./src/evdev.xml /usr/share/X11/xkb/rules #add modified rules
+	cp ./src/zg /usr/share/X11/xkb/symbols #add zawgyi keyboard layout
+	mkdir -p ~/.config/fontconfig && cp ./src/fonts.conf ~/.config/fontconfig #add fontconfig
+	sudo chown -R $$SUDO_USER:$$SUDO_USER ~/.config/fontconfig #set user permission instead of root
+	mkdir -p ~/bin && cp ./src/zawgyi ~/bin && cp ./src/unicode ~/bin #add sh files to bin
+	chmod a+x ~/bin/zawgyi ~/bin/unicode #make them executables
+	sudo chown -R $$SUDO_USER:$$SUDO_USER ~/bin #set user permission instead of root
 	echo "Done!"
+
 uninstall:
-	echo "Removing fonts"
+	echo "Uninstalling"
 	rm -rf /usr/share/fonts/mm
-	echo "Removing keyboard layout"
 	rm -rf /usr/share/X11/xkb/symbols/zg
-	echo "Removing fonts.conf"
 	rm -rf ~/.config/fontconfig
 	test -f /usr/share/X11/xkb/rules/evdev.xml.orig && echo "Found evdev.xml.orig! Restoring..." && rm -rf /usr/share/X11/xkb/rules/evdev.xml && mv /usr/share/X11/xkb/rules/evdev.xml.orig /usr/share/X11/xkb/rules/evdev.xml || echo "evdev.xml.orig not found! Skipped restoration of evdev.xml.orig"
 	#remove sh files if exists
@@ -26,13 +24,6 @@ uninstall:
 		rm -f $$sh ; \
 	done || echo "sh files not found so not removed"
 	echo "Done!"
-zawgyi:
-	echo "Setting system fallback font to Zawgyi"
-	sed -i "s/Myanmar3/Myanmar Text/g" ~/.config/fontconfig/fonts.conf
-	echo "Done!"
-unicode:
-	echo "Setting system fallback font to Myanmar3"
-	sed -i "s/Zawgyi-One/Myanmar Text/g" ~/.config/fontconfig/fonts.conf
-	echo "Done!"
-.PHONY: install uninstall zawgyi unicode 
-.SILENT: uninstall install zawgyi unicode
+
+.PHONY: install uninstall
+.SILENT: install uninstall

@@ -18,28 +18,10 @@ $ sudo make install
 
 ## Switching System Fallback font
 
-- Your default system font will be changed to Zawgyi-One after installation. To switch system fallback fonts, type the commands below
+- Your default system font will be changed to Zawgyi-One after installation. To switch system fallback fonts, type the commands below.
 ```
-$ cd zg-xkb (You will have to enter inside this directory everytime you switch.)
-$ make unicode (Your system fallback font will change to Myanmar3)
-$ make zawgyi (Your system fallback font will change to Zawgyi-One)
-```
-
-### Switching fallback font everywhere using $PATH
-
-- Type the commands below
-```
-$ cd zg-xkb
-$ mkdir ~/bin
-$ cp .sh/{zawgyi.sh,unicode.sh} ~/bin 
-$ cd ~/bin
-$ for sh in *.sh; do mv "$sh" "${sh/.sh/}"; done
-$ chmod a+x unicode zawgyi
-```
-- Then log out and log back in. Now you should be able to change font anywhere. Type following commands to change.
-```
-$ zawgyi (Your system fallback font will change to Zawgyi-One)
 $ unicode (Your system fallback font will change to Myanmar3)
+$ zawgyi (Your system fallback font will change to Zawgyi-One)
 ```
 - Ubuntu (and Debian based distros) automatically add $HOME/bin to the PATH if that directory is present. In case ~/.profile is not loaded add this to your ~/.bashrc
 ```
