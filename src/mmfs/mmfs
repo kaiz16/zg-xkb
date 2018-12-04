@@ -1,0 +1,44 @@
+#!/bin/bash
+CONFIG=~/.config/fontconfig/fonts.conf
+##find out what's the current font and update the radio list with the current font checked on app start
+if [ -f ~/.fonts.conf ]; then
+		rm ~/.fonts.conf
+		cp /usr/share/mmfs/fonts.conf $CONFIG
+		echo ".fonts.conf is deprecated. Replaced new config in .config/fontconfig"
+	fi
+
+	if [ ! -f $CONFIG ]; then
+		mkdir -p ~/.config/fontconfig
+		cp /usr/share/mmfs/fonts.conf $CONFIG
+		echo "Found no config. Created new."
+	fi
+
+declare -a checkList=(	Myanmar3
+			Myanmar\ Text
+			Noto\ Sans\ Myanmar
+			)
+
+for i in "${!checkList[@]}"
+do
+	##check the current font in fontconfig
+	if grep -q "${checkList[$i]}" "$CONFIG"; then
+		checkList[$i]=true ##update the list with the current font checked
+	fi
+done
+
+FONT=$(	zenity --list --radiolist --title="Myanmar Font Switcher" --width=100 --height=300 2> /dev/null --text="Choose a System Fallback Font you like..." --column="Check:" --column="Font Name:" "${checkList[0]}" "Myanmar3" "${checkList[1]}" "Zawgyi-One" "${checkList[2]}" "Noto Sans Myanmar")
+
+
+if [[ $FONT ]]; then
+	if [[ $FONT = "Zawgyi-One" ]]; then
+		FONT="Myanmar Text"
+	fi
+
+	sed -i "s/Myanmar3/$FONT/g" $CONFIG
+	sed -i "s/Myanmar Text/$FONT/g" $CONFIG
+	sed -i "s/Noto Sans Myanmar/$FONT/g" $CONFIG
+else ##cancel or x button handling
+ 	sed -i "s/Myanmar Text/Myanmar Text/g" $CONFIG
+	sed -i "s/Myanmar3/Myanmar3/g" $CONFIG
+	sed -i "s/Noto Sans Myanmar/Noto Sans Myanmar/g" $CONFIG
+fi

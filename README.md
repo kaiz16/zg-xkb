@@ -1,7 +1,7 @@
 ## Burmese Keyboard and Fonts
 
 - This is a Burmese Zawgyi keyboard which is based on xkb default keyboard. 
-- It also includes Unicode and Zawgyi font so you can read and write using Zawgyi or Unicode by switching the System Fallback font (~/.config/fontconfig/fonts.conf).
+- It also includes **Zenity GUI Application** so you can switch to Zawgyi or Unicode with **Myanmar Font Switcher**
 
 ## Installation
 
@@ -12,21 +12,16 @@ $ sudo apt install make
 $ cd zg-xkb
 $ sudo make install
 ```
-- Then log out or restart your device. By going into input sources or text entry you will see two keyboards. You can simply choose which one to add depending on your System Fallback font. 
-- Burmese (Default Unicode keyboard) 
-- Burmese Zawgyi (Zawgyi keyboard) 
+- Then **log out** or **restart** your device. By going into input sources or text entry you will see two keyboards. You can simply choose which one to add depending on your System Fallback font. 
+- **Burmese** (Default Unicode keyboard) 
+- **Burmese Zawgyi** (Zawgyi keyboard) 
 
 ## Switching System Fallback font
 
-- Your default system font will be changed to Zawgyi-One after installation. To switch system fallback fonts, type the commands below.
-```
-$ unicode (Your system fallback font will change to Myanmar3)
-$ zawgyi (Your system fallback font will change to Zawgyi-One)
-```
-- Ubuntu (and Debian based distros) automatically add $HOME/bin to the PATH if that directory is present. In case ~/.profile is not loaded add this to your ~/.bashrc
-```
-PATH="$HOME/bin:$PATH
-```
+- Your default system font will be changed to **Oxygen Zawgyi** after installation. To switch fonts, search **Myanmar Font Switcher** in Dashboard. You can change any font you like in there, For now there's three fonts avaialable
+- **Myanmar3** (Unicode)
+- **Noto Sans Myanmar** (Unicode)
+- **Oxygen Zawgyi** (Zawgyi)
 
 ## Uninstallation
 ```
@@ -53,3 +48,21 @@ For example,
 </match>
 ```
 A dirty way to fix this problem without removing fonts is to blacklist all fonts in Burmese language but whitelist only one font. See new configurations in fonts.conf.
+
+## Development
+
+This repo is developed and maintained by [Kaung Mon Htay]
+
+[Kaung Mon Htay]: https://github.com/kaiz16
+
+## Credits
+
+- Saturngod 
+- Box2
+- ThuraHlaing
+- [Ubuntu Myanmar LoCo Team]
+- [Naing Ye` Minn]
+
+[Ubuntu Myanmar LoCo Team]: https://ubuntu-mm.net
+
+[Naing Ye` Minn]: https://github.com/naingyeminn
